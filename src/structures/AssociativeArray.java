@@ -153,7 +153,17 @@ public class AssociativeArray<K, V> {
     return this.size;
   } // size()
 
+  /** 
+  get all keys
+  */
+  public String[] allKeys(){
+    String[] keysHolder = new String[this.size];
 
+    for (int i=0; i<this.size; i++){
+      keysHolder[i] = pairs[i].key.toString();
+    }
+    return keysHolder;
+  }
   // +-----------------+---------------------------------------------
   // | Private Methods |
   // +-----------------+
@@ -181,3 +191,4 @@ public class AssociativeArray<K, V> {
 
   }
 } // class AssociativeArray
+
