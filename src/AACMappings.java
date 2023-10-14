@@ -35,12 +35,13 @@ public class AACMappings {
       String[] dividedString = input.split(" ");
 
       while (scanner.hasNextLine()) {
-        if (input.charAt(0) == '>') {
+        if (input.charAt(0) != '>') {
           this.topLevel.addItem(dividedString[0], dividedString[1]);
+          // Build the category for this new category
+          // Add it to categories
         }
 
         else if (input.contains(">")) {
-          dividedString = input.split("");
           this.category.addItem(dividedString[0], dividedString[1]);
         }
         input = scanner.nextLine();
@@ -48,8 +49,6 @@ public class AACMappings {
       scanner.close();
     } catch (FileNotFoundException e) {
     }
-
-    
 
   }
 
