@@ -1,71 +1,86 @@
+/** 
+ * CSC-207
+ * Mini-project-5
+ * Gabriela Roznawska
+ * 12-10-2023
+ * Acknowledgements:
+ * Profesor Rebelsky and all of his online resources, Class mentors: Micah and Pom,
+ * Java documentation
+ * 
+ * This project is based on AssociativeArray that maps image locations
+ * to words
+ */
+
 import structures.AssociativeArray;
 import structures.KeyNotFoundException;
 
 
-//
 public class AACCategory {
 
-  // fields
+  /**
+   * Fields
+   */
   AssociativeArray<String, String> array;
   String category;
 
-  // constructors
+  /**
+   * Single string input constructor of AACCategory
+   */
   public AACCategory(String category) {
     this.category = category;
     this.array = new AssociativeArray<String, String>();
-  }
+  } // AACCategory(String)
 
+  /**
+   * A no-input AACCategory constructor
+   */
     public AACCategory() {
     this.array = new AssociativeArray<String, String>();
-  }
+  } // AACCAtegory()
 
-  // methods
-  // Adds the mapping of the imageLoc to the text to the category.
+  /**
+   * Methods
+   */
+
+  /**
+   * Adds the mapping of the imageLoc to the text to the category.
+   */
   public void addItem(String address, String name) {
     this.array.set(address, name);
-  } // getImageLocs()
+  } // addItem(String, String)
 
-  // Returns the name of the category
+  /**
+   * Returns the name of the category
+   */
   public String getCategory() {
     return this.category;
-  }
+  } // getCategory()
 
+  /**
+   * Returns an array of all the images in the category
+   */
   public String[] getImages(){
     return this.array.allKeys();
-  }
-  // Returns an array of all the images in the category
-  /*public String[] getImages() {
-    String[] newStrAr = new String[20]; // 20 is justa random limit
-    int i = 0;
+  } // getImages()
 
-    while (array.hasKey(category)) {
-      try {
-        newStrAr[i] = this.array.get(category);
-      } catch (KeyNotFoundException e) {
-        return newStrAr;
-      }
-      i++;
-    }
-*/
-    //return newStrAr;
-    // return new String[] {"img/food/icons8-french-fries-96.png",
-    // "img/food/icons8-watermelon-96.png"};
-  
 
-  // Returns the text associated with the given image loc in this category
+  /**
+   * Returns the text associated with the given image loc in this category
+   */
   public String getText(String address) {
     String temp;
     try {
       temp = this.array.get(address);
     } catch (KeyNotFoundException e) {
       return "";
-    }
+    } // catch
     return temp;
-  }
+  } // getText(String)
 
-  // Determines if the provided images is stored in the category
+  /**
+   * Determines if the provided images is stored in the category
+   */
   public boolean hasImage() {
     return array.hasKey(this.category);
-  }
-
-}
+  } // ahsImage()
+} //AACCategory class

@@ -1,3 +1,14 @@
+/** 
+ * CSC-207
+ * Mini-project-5
+ * Gabriela Roznawska
+ * 12-10-2023
+ * Acknowledgements:
+ * The whole file 
+ */
+
+
+
 import javax.swing.JFrame; 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

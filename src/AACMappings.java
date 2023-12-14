@@ -1,3 +1,15 @@
+/**
+ * CSC-207 
+ * Mini-project-5 
+ * Gabriela Roznawska 
+ * 12-10-2023 
+ * Acknowledgements: Profesor Rebelsky and allof his online resources, 
+ * Class mentors: Micah and Pom, Java documentation
+ * 
+ * This part of the project is AACMappings that contains AACCategory objects
+ * taht map filenames to their corresponding words 
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -8,22 +20,28 @@ import java.util.Scanner;
 
 public class AACMappings {
 
-  // fields
-
+/**
+ * fields
+ */
   // contains information about the current category
   AACCategory category;
-
   // Top level category
   AACCategory topLevel;
-
-  // food etc maping thing
   AssociativeArray<String, AACCategory> categories;
-  // constructors
-
+ 
+  /**
+   * 
+   * AACMappings constructor with a AACCategory input
+   */
   public AACMappings(AACCategory category) {
     this.category = category;
   }
 
+/**
+ * AACMappingsconstructor that takes in filename as input
+ * it "scans" the file and sources out the topLevel categories
+ * as well as the regular categories
+ */
   public AACMappings(String filename) {
     this.topLevel = new AACCategory();
     this.category = new AACCategory();
@@ -36,21 +54,20 @@ public class AACMappings {
 
       while (scanner.hasNextLine()) {
         if (input.charAt(0) != '>') {
-          this.topLevel.addItem(dividedString[0], dividedString[1]);
+          this.category.addItem(dividedString[0], dividedString[1]);
           // Build the category for this new category
           // Add it to categories
-        }
-
-        else if (input.contains(">")) {
-          this.category.addItem(dividedString[0], dividedString[1]);
-        }
+        } // if
+        else {
+          this.topLevel.addItem(dividedString[0], dividedString[1]);
+          this.category = new AACCategory(dividedString[1]);
+        } // else
         input = scanner.nextLine();
-      }
+      } // while
       scanner.close();
     } catch (FileNotFoundException e) {
-    }
-
-  }
+    } // catch
+  } // AACMappings 
 
 
   /*
@@ -64,25 +81,35 @@ public class AACMappings {
    */
 
 
-  // methods
+  /**
+   * Methods
+   */
 
-  // Adds the mapping to the current category (or the default category if that is the current
-  // category)
+  /**
+   * Adds the mapping to the current category (or the default category if that is the current
+   * category)
+   */
   public void add(String address, String name) {
     this.category.addItem(address, name);
-  }
+  } // add (String, String)
 
-  // Gets the current category
+  /**
+   * Returns the current category of AACCategory field
+   */
   public String getCurrentCategory() {
     return this.category.category;
-  }
+  } // getCurrentCategory()
 
-  // Provides an array of all the images in the current category
+  /**
+   * Provides an array of all the images in the current category
+   */
   public String[] getImageLocs() {
     return this.category.getImages();
   } // getImageLocs()
 
-  // Given the image location selected, it determines the associated text with the image.
+  /**
+   * Given the image location selected, it determines the associated text with the image.
+   */
   public String getText(String address) {
     String temp = this.category.getText(address); // may be wronggg
     if (this.category == this.topLevel) {
@@ -90,32 +117,35 @@ public class AACMappings {
         this.category = this.categories.get(temp);
       } catch (KeyNotFoundException e) {
         return "";
-      }
-    }
+      } // catch
+    } // if
     return temp;
-  }
+  } // getText (String)
 
-  // Determines if the image represents a category or text to speak
+  /**
+   * Determines if the image represents a category or text to speak
+   */
   public boolean isCategory(String address) {
-    return (address == category.getCategory()); // if input is the same as current category then its
-                                                // a category
-  }
+    return (address == category.getCategory());
+  } // isCategory (String)
 
-  // Resets the current category of the AAC back to the default category
+  /**
+   * Resets the current category of the AAC back to the default category
+   */
   public void reset() {
     this.category = this.topLevel;
-  }
+  } // reset()
 
-  // Writes the ACC mappings stored to a file.
+  /**
+   * Writes the ACC mappings stored to a file.
+   */
   public void writeToFile(String filename) {
     try {
       PrintWriter pen = new PrintWriter(new File(filename));
       // pen write ACC mappings???
       pen.close();
     } catch (Exception e) {
-    }
-
-  }
-
-}
+    } // catch
+  } //writeToFile(String)
+}// AACMappings class
 
