@@ -45,15 +45,16 @@ public class AACMappings {
   public AACMappings(String filename) {
     this.topLevel = new AACCategory();
     this.category = new AACCategory();
+    this.categories = new AssociativeArray<String, AACCategory>();
     File file = new File(filename);
     String input = "";
     try {
       Scanner scanner = new Scanner(file);
-      input = scanner.nextLine();
-      String[] dividedString = input.split(" ");
 
       while (scanner.hasNextLine()) {
-        if (input.charAt(0) != '>') {
+           input = scanner.nextLine();
+          String[] dividedString = input.split(" ", 2);
+        if (input.charAt(0) == '>') {
           this.category.addItem(dividedString[0], dividedString[1]);
           // Build the category for this new category
           // Add it to categories
@@ -61,12 +62,13 @@ public class AACMappings {
         else {
           this.topLevel.addItem(dividedString[0], dividedString[1]);
           this.category = new AACCategory(dividedString[1]);
+          this.categories.set(dividedString[1], this.category);
         } // else
-        input = scanner.nextLine();
       } // while
       scanner.close();
     } catch (FileNotFoundException e) {
     } // catch
+    this.category = this.topLevel;
   } // AACMappings 
 
 

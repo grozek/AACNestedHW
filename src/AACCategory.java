@@ -1,14 +1,8 @@
-/** 
- * CSC-207
- * Mini-project-5
- * Gabriela Roznawska
- * 12-10-2023
- * Acknowledgements:
- * Profesor Rebelsky and all of his online resources, Class mentors: Micah and Pom,
- * Java documentation
+/**
+ * CSC-207 Mini-project-5 Gabriela Roznawska 12-10-2023 Acknowledgements: Profesor Rebelsky and all
+ * of his online resources, Class mentors: Micah and Pom, Java documentation
  * 
- * This project is based on AssociativeArray that maps image locations
- * to words
+ * This project is based on AssociativeArray that maps image locations to words
  */
 
 import structures.AssociativeArray;
@@ -34,7 +28,8 @@ public class AACCategory {
   /**
    * A no-input AACCategory constructor
    */
-    public AACCategory() {
+  public AACCategory() {
+    this.category = "";
     this.array = new AssociativeArray<String, String>();
   } // AACCAtegory()
 
@@ -59,7 +54,7 @@ public class AACCategory {
   /**
    * Returns an array of all the images in the category
    */
-  public String[] getImages(){
+  public String[] getImages() {
     return this.array.allKeys();
   } // getImages()
 
@@ -83,4 +78,4 @@ public class AACCategory {
   public boolean hasImage() {
     return array.hasKey(this.category);
   } // ahsImage()
-} //AACCategory class
+} // AACCategory class
