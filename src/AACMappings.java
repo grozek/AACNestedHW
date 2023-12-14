@@ -3,11 +3,11 @@
  * Mini-project-5 
  * Gabriela Roznawska 
  * 12-10-2023 
- * Acknowledgements: Profesor Rebelsky and allof his online resources, 
+ * Acknowledgements: Profesor Rebelsky and all of his online resources, 
  * Class mentors: Micah and Pom, Java documentation
  * 
- * This part of the project is AACMappings that contains AACCategory objects
- * taht map filenames to their corresponding words 
+ * This part of the project is AACMappings that contains AACCategory objects taht map filenames to
+ * their corresponding words
  */
 
 import java.io.File;
@@ -20,28 +20,26 @@ import java.util.Scanner;
 
 public class AACMappings {
 
-/**
- * fields
- */
-  // contains information about the current category
+  /**
+   * fields
+   * AACCategory category is the current category
+   */
   AACCategory category;
-  // Top level category
   AACCategory topLevel;
   AssociativeArray<String, AACCategory> categories;
- 
+
   /**
    * 
    * AACMappings constructor with a AACCategory input
    */
   public AACMappings(AACCategory category) {
     this.category = category;
-  }
+  } // AACMappings(AACCategory)
 
-/**
- * AACMappingsconstructor that takes in filename as input
- * it "scans" the file and sources out the topLevel categories
- * as well as the regular categories
- */
+  /**
+   * AACMappingsconstructor that takes in filename as input it "scans" the file and sources out the
+   * topLevel categories as well as the regular categories
+   */
   public AACMappings(String filename) {
     this.topLevel = new AACCategory();
     this.category = new AACCategory();
@@ -50,14 +48,11 @@ public class AACMappings {
     String input = "";
     try {
       Scanner scanner = new Scanner(file);
-
       while (scanner.hasNextLine()) {
-           input = scanner.nextLine();
-          String[] dividedString = input.split(" ", 2);
+        input = scanner.nextLine();
+        String[] dividedString = input.split(" ", 2);
         if (input.charAt(0) == '>') {
-          this.category.addItem(dividedString[0], dividedString[1]);
-          // Build the category for this new category
-          // Add it to categories
+          this.category.addItem(dividedString[0].substring(1), dividedString[1]);
         } // if
         else {
           this.topLevel.addItem(dividedString[0], dividedString[1]);
@@ -69,18 +64,7 @@ public class AACMappings {
     } catch (FileNotFoundException e) {
     } // catch
     this.category = this.topLevel;
-  } // AACMappings 
-
-
-  /*
-   * this.topLevel = new AACCategory (""); this.category = this.topLevel; //this.category.array
-   * //filename constructor???? this.topLevel.addItem("img/food/plate.png", "food");
-   * this.topLevel.addItem("img/clothing/hanger.png", "clothing");
-   * this.topLevel.addItem("img/food/icons8-strawberry-96.png", "strawberry"); this.categories = new
-   * AssociativeArray <String, AACCategory> (); AACCategory food = new AACCategory ("food");
-   * food.addItem("img/food/icons8-apple-96.png", "apple");
-   * food.addItem("img/food/icons8-cookies-96.png", "cookies"); this.categories.set("food", food);
-   */
+  } // AACMappings(String)
 
 
   /**
@@ -148,6 +132,6 @@ public class AACMappings {
       pen.close();
     } catch (Exception e) {
     } // catch
-  } //writeToFile(String)
+  } // writeToFile(String)
 }// AACMappings class
 
